@@ -48,4 +48,10 @@ public class tile{
         if (this.entity instanceof obstacle || this.entity instanceof character ){return false;}
         else{return true;}
     }
+
+    @Override
+    public String toString(){
+        if (entity == null || entity instanceof trap){return "An empty tile";}
+        else{return "A tile with a " + entity.toString();}
+    }
 }

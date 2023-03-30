@@ -24,7 +24,7 @@ public class chest {
 
     /*returns the list of items that the player will take and empties the chest */
     public LinkedList dropItems(){
-        LinkedList<item> temp = this.items;   
+        LinkedList<item> temp = this.items.clone();   
         this.items = null;
         return temp;
     }
