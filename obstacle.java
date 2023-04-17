@@ -5,7 +5,7 @@ public class obstacle {
     private String name;
 
     /*Constructor for an obstacle with a name*/
-    public void obstacle(String name){
+    public obstacle(String name){
         this.name = name;
     }
 

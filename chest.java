@@ -12,7 +12,7 @@ public class chest {
      * takes in a list of 1-5 items, and throws an exception if the list is empty
      * if the list has more than 5 items it will remove the excess 
      */
-    public void chest(LinkedList<item> items) throws Exception{
+    public chest(LinkedList<item> items) throws Exception{
         if (items.size() == 0){
             throw new Exception("Trying to create a chest with no items");
         }

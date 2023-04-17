@@ -12,7 +12,7 @@ public class tile{
     private Object entity;
 
     /*Empty Tile constructor */
-    public void tile(){
+    public tile(){
         passable = true;
         this.passable = passableCheck();
     }
@@ -20,7 +20,7 @@ public class tile{
      *Constructor for a tile holding an entity (chest,trap,exit,character,obstacle)
      *automatically determines if the tile is passable or not based on the held entity
      */
-    public void tile(Object entity){
+    public tile(Object entity){
         this.entity = entity;
         this.passable = passableCheck();
     }

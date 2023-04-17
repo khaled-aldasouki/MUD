@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class room {
     
     private ArrayList<ArrayList<tile>> room = new ArrayList<ArrayList<tile>>();
+    public ArrayList<ArrayList<tile>> getRoom() {
+        return room;
+    }
+
     private int width;
     private int height;
     private String desc;
@@ -14,7 +18,7 @@ public class room {
     /*
      * Construct a room of certain width and height in tiles
      */
-    public void room(int width, int height){
+    public room(int width, int height){
         this.width = width;
         this.height = height;
         for (int i =0;i < height;i++){
@@ -44,4 +48,23 @@ public class room {
     public void addEntity(int height, int width, Object entity){
         room.get(height).get(width).setEntity(entity);
     }
+
+    public void movePlayer(int xcord, int ycord, int newx, int newy) {
+        try{
+            tile newLocation = this.room.get(newy).get(newx);
+            tile oldLocation = this.room.get(ycord).get(xcord);
+            if (newLocation.isPassable()){
+                newLocation.setEntity(this.room.get(ycord).get(xcord).getEntity());
+                oldLocation.setEntity(null);
+            }
+            else{
+                newLocation = (tile) newLocation;
+                System.out.println("An " + newLocation.getEntity() + " is blocking the way.");
+            }
+        }
+        catch (Exception e){
+            System.out.println("Cannot move in that direction.");
+        }
+    }
+
 }

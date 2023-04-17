@@ -7,16 +7,20 @@ public class trap {
     private boolean disarmed = false;
 
     /*Constructor for a trap with an attack (damage) value*/
-    public void trap(int attack){
+    public trap(int attack){
         this.attack = attack;
     }
     /*Method that disarms a trap, used once a trap has been activated (may be used later to implement a player disarming feature) */
     public void disarm(){disarmed = true;} 
 
+    public void activate(character other){
+        other.setHealth(other.getHealth() - attack);
+        System.out.println(other.getName() + " activated a trap and took " + this.attack + " damage! " + other.getName() + " is now at " + other.getHealth() + " health points.");
+    }
     /*Method used to damage a player that has activated this trap, then disarm it*/
     public void damagePlayer(character player){
         if (this.disarmed == false){
-            player.takeDamage(this.attack);
+            
             this.disarm();
         }
     }
