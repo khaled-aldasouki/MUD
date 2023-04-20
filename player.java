@@ -1,10 +1,28 @@
+import java.util.LinkedList;
+
 public class player extends character{
 
-    private Inventory inv = new Inventory();
-    private Weapon weapon;
-    private Armor armor;
+    private inventory inv;
+    
+
+    private weapon weapon;
+    private armor armor;
     private int xcord;
     private int ycord;
+    private int baseAttack = 10;
+    private int baseDefense = 0;
+
+    public inventory getInv() {
+        return inv;
+    }    
+
+    public int getBaseDefense() {
+        return baseDefense;
+    }
+
+    public int getBaseAttack() {
+        return baseAttack;
+    }
 
     public int getXcord() {
         return xcord;
@@ -30,6 +48,7 @@ public class player extends character{
         this.setDesc(desc);
         xcord = x;
         ycord = y;
+        inv = new inventory(this);
     }
 
     /*moves the player according to the direction entered:
@@ -59,4 +78,13 @@ public class player extends character{
             System.out.println("Not a valid move.");
         }
     }
+
+    public void openChest(chest c){
+        LinkedList<item> droppedItems = c.dropItems();
+        for (item i:droppedItems)
+        {
+            this.inv.pickUpItem(i);
+        }
+    }
 }
+
