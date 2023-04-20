@@ -71,6 +71,9 @@ public class room {
                 if (newLocation.getEntity() instanceof chest){
                     player.getPlayer().openChest(((chest)newLocation.getEntity()));
                 }
+                if (newLocation.getEntity() instanceof exit){
+                    ((exit) newLocation.getEntity()).changeRoom();
+                }
                 newLocation.setEntity(player.getPlayer());
                 oldLocation.setEntity(null);
             }
@@ -80,7 +83,7 @@ public class room {
             }
         }
         catch (Exception e){
-            System.out.println("Cannot move in that direction.");
+            System.out.println("Cannot move in that direction." + e);
         }
     }
 
@@ -91,15 +94,16 @@ public class room {
 
     public void enterRoom(int xcord, int ycord){
         player.getPlayer().setXcord(xcord);
-        player.getPlayer().setXcord(ycord);
-        if (this.special.equals("start")){
+        player.getPlayer().setYcord(ycord);
+        if (this.special == null){
+            System.out.println(player.getPlayer().getName() + " has entered a new room!");
+        }
+        else if (this.special.equals("start")){
             System.out.println("Welcome to the dungeon!");
         }
         else if (this.special.equals("goal")){
             System.out.println(player.getPlayer().getName() + " has entered the final room!");
         }
-        else{
-            System.out.println(player.getPlayer().getName() + " has entered a new room!");
-        }
+        
     }
 }

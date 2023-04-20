@@ -1,15 +1,16 @@
 public class exit {
     
-    private int targetx;
-    private int targety;
-
-    public exit(int targetx, int targety){
-        this.targetx = targetx;
-        this.targety = targety;
+    private int targetx = 0;
+    private int targety = 0;
+    private room sourceRoom;
+    private room targetRoom;
+    public exit(room sourceRoom, room targetRoom){
+        this.sourceRoom = sourceRoom;
+        this.targetRoom = targetRoom;
     }
 
-    public void changeRoom(room sourceRoom, room targetRoom){
-        sourceRoom.exitRoom(player.getPlayer().getXcord(), player.getPlayer().getYcord());
-        targetRoom.enterRoom(this.targetx, this.targety);
+    public void changeRoom(){
+        this.sourceRoom.exitRoom(player.getPlayer().getXcord(), player.getPlayer().getYcord());
+        this.targetRoom.enterRoom(this.targetx, this.targety);
     }
 }

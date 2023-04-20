@@ -93,7 +93,10 @@ public class player extends character{
             if (direction == 3 || direction == 5 || direction == 8){
                 newx++;
             }
+            this.xcord = newx;
+            this.ycord = newy;
             r.movePlayer(xcord,ycord,newx,newy);
+            
         }
         else{
             System.out.println("Not a valid move.");

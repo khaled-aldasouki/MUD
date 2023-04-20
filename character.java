@@ -60,4 +60,7 @@ public abstract class character {
         System.out.println(this.name + " attacked " + other.getName() + " and dealt " + damage + " damage! " +other.getName() + " is now at " + other.getHealth() + " health points.");
     }
 
+    public String toString(){
+        return this.name;
+    }
 }

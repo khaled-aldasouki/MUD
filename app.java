@@ -27,10 +27,18 @@ public class app {
 
 
         room firstRoom = new room(10, 10,"start");
+        room secondRoom = new room(10, 10);
+
+        exit e = new exit(firstRoom,secondRoom);
+        firstRoom.addEntity(3, 0, e);
         firstRoom.enterRoom(0, 0);
-        firstRoom.addEntity(1, 0, o);
         pc.move(firstRoom, 2);
-        pc.printInventory();
+        pc.move(firstRoom, 2);
+        pc.move(firstRoom, 2);
+
+        System.out.println(pc.getXcord() + "," + pc.getYcord());
+
+
 
         
 
