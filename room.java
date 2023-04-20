@@ -30,6 +30,20 @@ public class room {
         }
     }
 
+
+    public room(int width, int height,String special){
+        this.width = width;
+        this.height = height;
+        this.special = special;
+        for (int i =0;i < height;i++){
+            room.add(new ArrayList<tile>());
+        }
+
+        for (ArrayList<tile> list : room){
+            list.add(new tile());
+        }
+    }
+
     /*Set a room to be the start or goal room */
     public void setSpecial(String type) {
         if (type.equals("goal") || type.equals("start")){
@@ -54,7 +68,10 @@ public class room {
             tile newLocation = this.room.get(newy).get(newx);
             tile oldLocation = this.room.get(ycord).get(xcord);
             if (newLocation.isPassable()){
-                newLocation.setEntity(this.room.get(ycord).get(xcord).getEntity());
+                if (newLocation.getEntity() instanceof chest){
+                    player.getPlayer().openChest(((chest)newLocation.getEntity()));
+                }
+                newLocation.setEntity(player.getPlayer());
                 oldLocation.setEntity(null);
             }
             else{
@@ -67,4 +84,22 @@ public class room {
         }
     }
 
+    public void exitRoom(int xcord, int ycord){
+            tile oldLocation = this.room.get(ycord).get(xcord);
+            oldLocation.setEntity(null);  
+    }
+
+    public void enterRoom(int xcord, int ycord){
+        player.getPlayer().setXcord(xcord);
+        player.getPlayer().setXcord(ycord);
+        if (this.special.equals("start")){
+            System.out.println("Welcome to the dungeon!");
+        }
+        else if (this.special.equals("goal")){
+            System.out.println(player.getPlayer().getName() + " has entered the final room!");
+        }
+        else{
+            System.out.println(player.getPlayer().getName() + " has entered a new room!");
+        }
+    }
 }

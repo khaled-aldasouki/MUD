@@ -9,10 +9,10 @@ public class weapon extends item{
     }
 
     @Override
-    public void use(player pc) {
-        pc.setAttack(pc.getBaseAttack() + this.attackValue);
-        System.out.println(pc.getName() + " equipped " + this.getName()
-                            + " and now has " + pc.getAttack() + " attack points.");
+    public void use() {
+        player.getPlayer().setAttack(player.getPlayer().getBaseAttack() + this.attackValue);
+        System.out.println(player.getPlayer().getName() + " equipped " + this.getName()
+                            + " and now has " + player.getPlayer().getAttack() + " attack points.");
     }
     
 }

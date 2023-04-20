@@ -48,7 +48,7 @@ public class player extends character{
         this.setDesc(desc);
         xcord = x;
         ycord = y;
-        inv = new inventory(this);
+        inv = new inventory();
     }
 
     /*
@@ -58,6 +58,10 @@ public class player extends character{
         if (!(pc instanceof player)){
             pc = new player(name,desc,0,0);
         }
+        return pc;
+    }
+
+    public static player getPlayer(){
         return pc;
     }
 
@@ -96,12 +100,16 @@ public class player extends character{
         }
     }
 
-    public void openChest(chest c){
-        LinkedList<item> droppedItems = c.dropItems();
-        for (item i:droppedItems)
+    public void pickUpItems(LinkedList<item> items){
+        for (item i:items)
         {
-            this.inv.pickUpItem(i);
+            this.inv.addItem(i);
         }
+    }
+    public void openChest(chest c){
+        System.out.println(this.getName() + " opened a chest!");
+        LinkedList<item> droppedItems = c.dropItems();
+        pickUpItems(droppedItems);
     }
 }
 

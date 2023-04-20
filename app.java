@@ -20,17 +20,19 @@ public class app {
 
         chest c = new chest(chestlist);
 
-        pc.openChest(c);
         pc.printInventory();
-        pc.useItem(0);
-
-        pc.attackCharacter(enemy);
-        enemy.attackCharacter(pc);
-
-
-        
         
 
+        obstacle o = new obstacle("table");
+
+
+        room firstRoom = new room(10, 10,"start");
+        firstRoom.enterRoom(0, 0);
+        firstRoom.addEntity(1, 0, o);
+        pc.move(firstRoom, 2);
+        pc.printInventory();
+
+        
 
 }
 }

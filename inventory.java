@@ -7,7 +7,7 @@ public class inventory {
     private bag[] bags;
     private player pc;
 
-    public inventory(player pc){
+    public inventory(){
         this.capacity = 6;
         this.items = new LinkedList<item>();
         this.bags = new bag[6]; 
@@ -34,7 +34,7 @@ public class inventory {
         System.out.println("You cannot equip a bag that will decrease your capacity.");
     }
 
-    public void pickUpItem(item i){
+    public void addItem(item i){
         if (items.size() == capacity){
             System.out.println("Inventory Full!");
         }
@@ -62,7 +62,7 @@ public class inventory {
             System.out.println("Invalid input!");
         }
         else{
-            items.get(index).use(pc);
+            items.get(index).use();
         }
     }
 }

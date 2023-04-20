@@ -7,7 +7,7 @@ public abstract class item {
         this.name = name;
         this.goldValue = goldValue;
     }
-    abstract public void use(player pc);
+    abstract public void use();
     public String getName() {
         return name;
     }

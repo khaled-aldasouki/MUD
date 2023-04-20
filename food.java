@@ -10,10 +10,10 @@ public class food extends item {
                             this.getGoldValue() + " gold.");
     }
     @Override
-    public void use(player pc) {
-        pc.setHealth(pc.getHealth() + healValue);
+    public void use() {
+        player.getPlayer().setHealth(player.getPlayer().getHealth() + healValue);
         System.out.println("Consumed " + this.getName() + " and healed " + this.healValue + 
-                            ". " + pc.getName() + "'s health is now " + pc.getHealth());
+                            ". " + player.getPlayer().getName() + "'s health is now " + player.getPlayer().getHealth());
     }
     
 }

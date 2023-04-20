@@ -13,8 +13,8 @@ public class bag extends item{
     }
     
     @Override
-    public void use(player pc) {
-        pc.getInv().equipBag(this);
+    public void use() {
+        player.getPlayer().getInv().equipBag(this);
         
     }
     
