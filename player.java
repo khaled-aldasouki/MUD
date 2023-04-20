@@ -2,9 +2,9 @@ import java.util.LinkedList;
 
 public class player extends character{
 
-    private inventory inv;
-    
+    private static player pc;
 
+    private inventory inv;
     private weapon weapon;
     private armor armor;
     private int xcord;
@@ -40,7 +40,7 @@ public class player extends character{
         this.ycord = ycord;
     }
 
-    public player(String name, String desc, int x, int y) {
+    private player(String name, String desc, int x, int y) {
         super(name);
         this.setHealth(100);    
         this.setAttack(10);
@@ -51,6 +51,23 @@ public class player extends character{
         inv = new inventory(this);
     }
 
+    /*
+     * method used to create player, ensures only a single player exists at a time
+     */
+    public static player createPlayer(String name, String desc){
+        if (!(pc instanceof player)){
+            pc = new player(name,desc,0,0);
+        }
+        return pc;
+    }
+
+    public void useItem(int index){
+        pc.getInv().useItem(index);
+    }
+
+    public void printInventory(){
+        pc.getInv().printInventory();
+    }
     /*moves the player according to the direction entered:
      * 1 2 3 
      * 4   5

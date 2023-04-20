@@ -5,7 +5,7 @@ public class food extends item {
     public food(String name,int goldValue,int healValue){
         super(name,goldValue);
         this.healValue = healValue;
-        this.setDescription("A " + this.getName() + " that can be consumed to heal "
+        this.setDescription("An " + this.getName() + " that can be consumed to heal "
                             + this.healValue + " health points. Worth " +
                             this.getGoldValue() + " gold.");
     }
@@ -13,7 +13,7 @@ public class food extends item {
     public void use(player pc) {
         pc.setHealth(pc.getHealth() + healValue);
         System.out.println("Consumed " + this.getName() + " and healed " + this.healValue + 
-                            ". Player health is now " + pc.getHealth());
+                            ". " + pc.getName() + "'s health is now " + pc.getHealth());
     }
     
 }

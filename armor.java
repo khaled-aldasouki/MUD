@@ -11,7 +11,7 @@ public class armor extends item{
     @Override
     public void use(player pc) {
         pc.setDefense(pc.getBaseDefense() + this.defenseValue);
-        System.out.println("Player equipped " + this.getName()
+        System.out.println(pc.getName() + " equipped " + this.getName()
                             + " and now has " + pc.getDefense() + " defense points.");
     }
     

@@ -39,7 +39,12 @@ public class inventory {
             System.out.println("Inventory Full!");
         }
         else{
+            if (i instanceof bag){
+                equipBag((bag) i);
+            }
+            else{
             items.add(i);
+            }
         }
     }
 

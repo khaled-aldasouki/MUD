@@ -1,6 +1,3 @@
-
-
-
 /*
  * A tile is a 3x3 foot sized square representing a section of a room in a map.
  * a tile can be empty or can hold a trap which is triggered by a passing player, a chest which
