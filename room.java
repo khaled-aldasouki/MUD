@@ -26,7 +26,10 @@ public class room {
         }
 
         for (ArrayList<tile> list : room){
-            list.add(new tile());
+            for (int j = 0; j<width;j++){
+                list.add(new tile());
+            }
+            
         }
     }
 
@@ -40,7 +43,10 @@ public class room {
         }
 
         for (ArrayList<tile> list : room){
-            list.add(new tile());
+            for (int j = 0; j<width;j++){
+                list.add(new tile());
+            }
+            
         }
     }
 
@@ -63,7 +69,7 @@ public class room {
         room.get(height).get(width).setEntity(entity);
     }
 
-    public void movePlayer(int xcord, int ycord, int newx, int newy) {
+    public boolean movePlayer(int xcord, int ycord, int newx, int newy) {
         try{
             tile newLocation = this.room.get(newy).get(newx);
             tile oldLocation = this.room.get(ycord).get(xcord);
@@ -74,16 +80,22 @@ public class room {
                 if (newLocation.getEntity() instanceof exit){
                     ((exit) newLocation.getEntity()).changeRoom();
                 }
+                if (newLocation.getEntity() instanceof trap){
+                    ((trap) newLocation.getEntity()).activate();
+                }
                 newLocation.setEntity(player.getPlayer());
                 oldLocation.setEntity(null);
+                return true;
             }
             else{
                 newLocation = (tile) newLocation;
                 System.out.println("An " + newLocation.getEntity() + " is blocking the way.");
+                return false;
             }
         }
         catch (Exception e){
             System.out.println("Cannot move in that direction." + e);
+            return false;
         }
     }
 
@@ -95,15 +107,24 @@ public class room {
     public void enterRoom(int xcord, int ycord){
         player.getPlayer().setXcord(xcord);
         player.getPlayer().setYcord(ycord);
+        player.getPlayer().setCurrentRoom(this);
+        this.room.get(ycord).get(xcord).setEntity(player.getPlayer());
         if (this.special == null){
             System.out.println(player.getPlayer().getName() + " has entered a new room!");
+            System.out.println(this);
         }
         else if (this.special.equals("start")){
             System.out.println("Welcome to the dungeon!");
+            System.out.println(this);
         }
         else if (this.special.equals("goal")){
-            System.out.println(player.getPlayer().getName() + " has entered the final room!");
+            System.out.println(player.getPlayer().getName() + " has reached the destination!");
+            System.exit(0);
         }
         
+    }
+
+    public String toString(){
+        return this.desc;
     }
 }

@@ -13,15 +13,13 @@ public class trap {
     /*Method that disarms a trap, used once a trap has been activated (may be used later to implement a player disarming feature) */
     public void disarm(){disarmed = true;} 
 
-    public void activate(character other){
-        other.setHealth(other.getHealth() - attack);
-        System.out.println(other.getName() + " activated a trap and took " + this.attack + " damage! " + other.getName() + " is now at " + other.getHealth() + " health points.");
-    }
-    /*Method used to damage a player that has activated this trap, then disarm it*/
-    public void damagePlayer(character player){
+    public void activate(){
         if (this.disarmed == false){
-            
+            player pc = player.getPlayer();
+            pc.setHealth(pc.getHealth() - attack);
+            System.out.println(pc.getName() + " activated a trap and took " + this.attack + " damage! " + pc.getName() + " is now at " + pc.getHealth() + " health points.");
             this.disarm();
         }
     }
+    
 }

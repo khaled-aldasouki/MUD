@@ -24,9 +24,13 @@ public class chest {
 
     /*returns the list of items that the player will take and empties the chest */
     public LinkedList dropItems(){
+        if (this.items != null){
+            System.out.println(player.getPlayer().getName() + " has opened a chest and acquired the items inside!");
+        }
         LinkedList<item> temp = (LinkedList<item>) this.items.clone();   
         this.items = null;
         return temp;
+        
     }
 
     

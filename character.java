@@ -8,7 +8,6 @@ public abstract class character {
 
     public character(String name){
         this.name = name;
-        desc = "Character " + name + ", with " + health + " health, " + attack + " attack, and " + defense + " defense."; 
 
     }
 
@@ -54,10 +53,17 @@ public abstract class character {
      * minimum damage dealt is 1.
      */
     public void attackCharacter(character other){
-        int damage = this.attack - other.getDefense();
-        if (damage <= 0){damage = 1;}
-        other.setHealth(other.getHealth() - damage);
-        System.out.println(this.name + " attacked " + other.getName() + " and dealt " + damage + " damage! " +other.getName() + " is now at " + other.getHealth() + " health points.");
+        if (other.getHealth() > 0){
+            int damage = this.attack - other.getDefense();
+            if (damage <= 0){damage = 1;}
+            other.setHealth(other.getHealth() - damage);
+            if (other.getHealth() >0){
+                System.out.println(this.name + " attacked " + other.getName() + " and dealt " + damage + " damage! " +other.getName() + " is now at " + other.getHealth() + " health points.");
+            } else {
+                System.out.println(this.name + " had defeated a " + other.getName() + "!");
+
+            }
+    }
     }
 
     public String toString(){

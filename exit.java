@@ -1,7 +1,6 @@
 public class exit {
     
-    private int targetx = 0;
-    private int targety = 0;
+  
     private room sourceRoom;
     private room targetRoom;
     public exit(room sourceRoom, room targetRoom){
@@ -11,6 +10,6 @@ public class exit {
 
     public void changeRoom(){
         this.sourceRoom.exitRoom(player.getPlayer().getXcord(), player.getPlayer().getYcord());
-        this.targetRoom.enterRoom(this.targetx, this.targety);
+        this.targetRoom.enterRoom(0, 0);
     }
 }

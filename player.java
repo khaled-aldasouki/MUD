@@ -5,12 +5,19 @@ public class player extends character{
     private static player pc;
 
     private inventory inv;
-    private weapon weapon;
-    private armor armor;
     private int xcord;
     private int ycord;
     private int baseAttack = 10;
     private int baseDefense = 0;
+    private room currentRoom;
+    
+    public room getCurrentRoom() {
+        return currentRoom;
+    }
+
+    public void setCurrentRoom(room currentRoom) {
+        this.currentRoom = currentRoom;
+    }
 
     public inventory getInv() {
         return inv;
@@ -66,7 +73,12 @@ public class player extends character{
     }
 
     public void useItem(int index){
-        pc.getInv().useItem(index);
+        try{        
+            pc.getInv().useItem(index);
+        }
+        catch (Exception e){
+            System.out.println("Invalid Input");
+        }
     }
 
     public void printInventory(){
@@ -77,7 +89,7 @@ public class player extends character{
      * 4   5
      * 6 7 8
      */
-    public void move(room r, int direction){
+    public void move(int direction){
         int newx = xcord;
         int newy = ycord;
         if (direction >= 1 && direction <= 8){
@@ -93,9 +105,11 @@ public class player extends character{
             if (direction == 3 || direction == 5 || direction == 8){
                 newx++;
             }
-            this.xcord = newx;
-            this.ycord = newy;
-            r.movePlayer(xcord,ycord,newx,newy);
+            
+            if(currentRoom.movePlayer(xcord,ycord,newx,newy)){
+                this.xcord = newx;
+                this.ycord = newy;
+            }
             
         }
         else{
@@ -113,6 +127,27 @@ public class player extends character{
         System.out.println(this.getName() + " opened a chest!");
         LinkedList<item> droppedItems = c.dropItems();
         pickUpItems(droppedItems);
+    }
+    public void attackNpcs(){
+        Object entity;
+        for (int i = xcord - 1; i <= xcord + 1; i++){
+            for (int j = ycord - 1; j<= ycord + 1; j++){
+                try{
+                    entity = currentRoom.getRoom().get(j).get(i).getEntity();
+                    if (entity instanceof npc){
+                        this.attackCharacter((character) entity);
+                        
+                    }
+                }
+                catch (Exception e){
+                    continue;
+                }
+            }
+        }
+    }
+
+    public String toString(){
+        return this.getName() + "'s currently at (" + pc.xcord + ", " + this.ycord + ") with " +this.getHealth() + " health";
     }
 }
 
