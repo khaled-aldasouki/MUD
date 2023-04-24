@@ -5,13 +5,11 @@ public class inventory {
     private int capacity;
     private LinkedList<item> items;
     private bag[] bags;
-    private player pc;
 
     public inventory(){
         this.capacity = 6;
         this.items = new LinkedList<item>();
         this.bags = new bag[6]; 
-        this.pc = pc;
     }
 
     public void equipBag(bag b){
@@ -62,7 +60,11 @@ public class inventory {
             System.out.println("Invalid input!");
         }
         else{
-            items.get(index).use();
+            item i = items.get(index);
+            i.use();
+            if (i instanceof food){
+                items.remove(index);
+            }
         }
     }
 }
