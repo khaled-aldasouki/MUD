@@ -56,7 +56,6 @@ public class app {
 
         secondRoom.addEntity(2, 4, table);
         secondRoom.addEntity(3, 1, statue);
-        secondRoom.addEntity(7, 4, new trap(15));
 
         thirdRoom.addEntity(2, 4, table);
         thirdRoom.addEntity(3, 1, statue);
@@ -92,8 +91,12 @@ public class app {
                 case "1":
                     System.out.println("Enter the number of the direction you want to move: \n1 2 3\n4   5\n6 7 8");
                     input2 = scanner.nextLine();
-                    pc.move( Integer.parseInt(input2));
-                    turns--;
+                    try{                    
+                        pc.move( Integer.parseInt(input2));
+                        turns--;
+                        
+                    }
+                    catch (Exception e){System.out.println("Invalid Input");}
                     break;
                 case "2":
                     pc.attackNpcs();
@@ -106,7 +109,9 @@ public class app {
                     pc.getInv().printInventory();
                     System.out.println("Enter the number of the item you want to use: ");
                     input2 = scanner.nextLine();
-                    pc.useItem(  Integer.parseInt(input2) - 1);
+                    try{pc.useItem(  Integer.parseInt(input2) - 1);}
+                    catch (Exception e){System.out.println("Invalid Input");}
+
                     break;
                 case "q":
                     System.exit(0);
